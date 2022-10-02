@@ -5,3 +5,65 @@ INNER JOIN dannys_diner.sales
 	ON sales.product_id = menu.product_id
 GROUP BY sales.customer_id
 ORDER BY sales.customer_id;
+
+-- Question 2
+SELECT sales.customer_id, COUNT(DISTINCT sales.order_date) AS visited_days
+FROM dannys_diner.sales
+GROUP BY sales.customer_id
+ORDER BY customer_id;
+
+-- Question 3
+SELECT sales.customer_id, sales.order_date, menu.product_name
+FROM dannys_diner.menu as menu
+INNER JOIN dannys_diner.sales as sales
+ON sales.product_id = menu.product_id
+WHERE sales.order_date = (
+  select min(sales_1.order_date)
+  from dannys_diner.sales as sales_1
+  WHERE sales.customer_id =sales_1.customer_id
+);
+
+-- Question 4
+SELECT menu.product_name, COUNT(sales.product_id) as times_purchased
+FROM dannys_diner.menu as menu
+INNER JOIN dannys_diner.sales as sales
+ON menu.product_id = sales.product_id
+GROUP BY menu.product_name
+LIMIT 1;
+
+-- Question 5
+WITH
+	customer_order_counts
+AS (
+  SELECT sales.customer_id, menu.product_name, COUNT(menu.product_name) as order_count
+  FROM dannys_diner.menu as menu
+  INNER JOIN dannys_diner.sales as sales
+  ON sales.product_id = menu.product_id
+  GROUP BY menu.product_name, sales.customer_id
+  ORDER BY order_count DESC
+)
+SELECT *
+FROM customer_order_counts AS oc
+WHERE oc.order_count = (
+  SELECT max(oc_2.order_count)
+  FROM customer_order_counts AS oc_2
+  WHERE oc_2.customer_id = oc.customer_id
+)
+ORDER BY oc.customer_id;
+
+-- Question 6
+WITH	
+	member_sales
+AS (
+  SELECT members.join_date, sales.customer_id, sales.product_id, sales.order_date, DENSE_RANK() OVER(PARTITION BY sales.customer_id ORDER BY sales.order_date) Rank
+  FROM dannys_diner.sales as sales
+  JOIN dannys_diner.members as members
+  ON members.customer_id = sales.customer_id
+  WHERE sales.order_date >= members.join_date
+)
+SELECT member_sales.customer_id, menu.product_name, member_sales.order_date
+FROM member_sales
+JOIN dannys_diner.menu as menu
+ON member_sales.product_id = menu.product_id
+WHERE rank = 1
+ORDER BY member_sales.customer_id;
