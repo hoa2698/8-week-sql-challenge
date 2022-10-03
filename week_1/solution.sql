@@ -67,3 +67,47 @@ JOIN dannys_diner.menu as menu
 ON member_sales.product_id = menu.product_id
 WHERE rank = 1
 ORDER BY member_sales.customer_id;
+
+-- Question 7
+WITH	
+	member_sales
+AS (
+  SELECT members.join_date, sales.customer_id, sales.product_id, sales.order_date, DENSE_RANK() OVER(PARTITION BY sales.customer_id ORDER BY sales.order_date) Rank
+  FROM dannys_diner.sales as sales
+  JOIN dannys_diner.members as members
+  ON members.customer_id = sales.customer_id
+  WHERE sales.order_date <= members.join_date
+)
+SELECT member_sales.customer_id, menu.product_name, member_sales.order_date
+FROM member_sales
+JOIN dannys_diner.menu as menu
+ON member_sales.product_id = menu.product_id
+WHERE rank = 1
+ORDER BY member_sales.customer_id;
+
+-- QUestion 8
+SELECT sales.customer_id, COUNT(sales.product_id) as total_items, SUM(menu.price) as total_amount_spent
+FROM dannys_diner.sales as sales
+JOIN dannys_diner.menu as menu
+	ON sales.product_id = menu.product_id
+JOIN dannys_diner.members as members
+	ON sales.customer_id = members.customer_id
+WHERE sales.order_date < members.join_date
+GROUP BY sales.customer_id
+ORDER BY sales.customer_id;
+
+-- Question 9
+WITH points_earned AS(
+  SELECT *,
+  CASE 
+  	WHEN product_name = 'sushi' THEN price * 20
+  	ELSE price * 10
+  END AS points
+  FROM dannys_diner.menu
+)
+SELECT sales.customer_id, SUM(points_earned.points) as total_points
+FROM dannys_diner.sales as sales
+LEFT JOIN points_earned
+ON points_earned.product_id = sales.product_id
+GROUP BY sales.customer_id
+ORDER BY sales.customer_id;
