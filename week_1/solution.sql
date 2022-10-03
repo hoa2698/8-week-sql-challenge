@@ -111,3 +111,70 @@ LEFT JOIN points_earned
 ON points_earned.product_id = sales.product_id
 GROUP BY sales.customer_id
 ORDER BY sales.customer_id;
+
+-- Question 10
+WITH members_in_first_week
+AS (
+  SELECT sales.customer_id, sales.order_date, members.join_date, sales.product_id, menu.product_name, menu.price, 
+  CASE
+  	WHEN sales.order_date < members.join_date THEN 0
+  	WHEN sales.order_date > members.join_date + INTERVAL '7 days' THEN 0
+  	ELSE 1
+  END AS in_first_week
+  FROM dannys_diner.sales as sales
+  INNER JOIN dannys_diner.menu as menu
+  ON sales.product_id = menu.product_id
+  INNER JOIN dannys_diner.members as members
+  ON sales.customer_id = members.customer_id
+  WHERE sales.order_date < '2021-02-01'
+), member_points
+AS (
+  SELECT members_in_first_week.customer_id, members_in_first_week.product_id, members_in_first_week.order_date, members_in_first_week.price, members_in_first_week. in_first_week,
+  CASE 
+  	WHEN members_in_first_week.in_first_week = 1 then members_in_first_week.price * 20
+  	WHEN members_in_first_week.product_id = 1 then members_in_first_week.price * 20
+  	ELSE members_in_first_week.price * 10
+  END AS points
+  FROM members_in_first_week
+)
+SELECT member_points.customer_id, SUM(member_points.points) as points_earned
+FROM member_points
+GROUP BY member_points.customer_id
+ORDER BY member_points.customer_id;
+
+-- Bonus questions
+-- Question 11
+SELECT sales.customer_id, sales.order_date, menu.product_name, menu.price,
+CASE
+	WHEN members.join_date > sales.order_date then 'N'
+    WHEN members.join_date <= sales.order_date then 'Y'
+    ELSE 'N'
+END AS members_info
+FROM dannys_diner.sales as sales
+LEFT JOIN dannys_diner.menu as menu
+ON sales.product_id = menu.product_id
+LEFT JOIN dannys_diner.members as members
+ON sales.customer_id = members.customer_id;
+
+-- Question 12
+WITH customer_order_summary
+AS (
+	SELECT sales.customer_id, sales.order_date, menu.product_name, menu.price,
+	CASE
+		WHEN members.join_date > sales.order_date then 'N'
+    	WHEN members.join_date <= sales.order_date then 'Y'
+    	ELSE 'N'
+	END AS members_info
+	FROM dannys_diner.sales as sales
+	LEFT JOIN dannys_diner.menu as menu
+	ON sales.product_id = menu.product_id
+	LEFT JOIN dannys_diner.members as members
+	ON sales.customer_id = members.customer_id
+)
+SELECT *,
+CASE 
+	WHEN members_info = 'N' then NULL
+    ELSE
+    	RANK() OVER(PARTITION BY customer_order_summary.customer_id, customer_order_summary.members_info ORDER BY customer_order_summary.order_date)
+END as ranking
+FROM customer_order_summary;
