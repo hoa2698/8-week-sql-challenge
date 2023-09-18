@@ -6,6 +6,7 @@ INNER JOIN dannys_diner.sales
 GROUP BY sales.customer_id
 ORDER BY sales.customer_id;
 
+
 -- Question 2
 SELECT sales.customer_id, COUNT(DISTINCT sales.order_date) AS visited_days
 FROM dannys_diner.sales
@@ -23,6 +24,7 @@ WHERE sales.order_date = (
   WHERE sales.customer_id =sales_1.customer_id
 );
 
+
 -- Question 4
 SELECT menu.product_name, COUNT(sales.product_id) as times_purchased
 FROM dannys_diner.menu as menu
@@ -30,6 +32,7 @@ INNER JOIN dannys_diner.sales as sales
 ON menu.product_id = sales.product_id
 GROUP BY menu.product_name
 LIMIT 1;
+
 
 -- Question 5
 WITH
@@ -51,6 +54,7 @@ WHERE oc.order_count = (
 )
 ORDER BY oc.customer_id;
 
+
 -- Question 6
 WITH	
 	member_sales
@@ -67,6 +71,7 @@ JOIN dannys_diner.menu as menu
 ON member_sales.product_id = menu.product_id
 WHERE rank = 1
 ORDER BY member_sales.customer_id;
+
 
 -- Question 7
 WITH	
@@ -85,7 +90,8 @@ ON member_sales.product_id = menu.product_id
 WHERE rank = 1
 ORDER BY member_sales.customer_id;
 
--- QUestion 8
+
+-- Question 8
 SELECT sales.customer_id, COUNT(sales.product_id) as total_items, SUM(menu.price) as total_amount_spent
 FROM dannys_diner.sales as sales
 JOIN dannys_diner.menu as menu
@@ -95,6 +101,7 @@ JOIN dannys_diner.members as members
 WHERE sales.order_date < members.join_date
 GROUP BY sales.customer_id
 ORDER BY sales.customer_id;
+
 
 -- Question 9
 WITH points_earned AS(
@@ -111,6 +118,7 @@ LEFT JOIN points_earned
 ON points_earned.product_id = sales.product_id
 GROUP BY sales.customer_id
 ORDER BY sales.customer_id;
+
 
 -- Question 10
 WITH members_in_first_week
@@ -142,6 +150,7 @@ FROM member_points
 GROUP BY member_points.customer_id
 ORDER BY member_points.customer_id;
 
+
 -- Bonus questions
 -- Question 11
 SELECT sales.customer_id, sales.order_date, menu.product_name, menu.price,
@@ -155,6 +164,7 @@ LEFT JOIN dannys_diner.menu as menu
 ON sales.product_id = menu.product_id
 LEFT JOIN dannys_diner.members as members
 ON sales.customer_id = members.customer_id;
+
 
 -- Question 12
 WITH customer_order_summary
