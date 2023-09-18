@@ -1,4 +1,4 @@
--- Question 1
+-- QUESTION 1
 SELECT sales.customer_id, SUM(menu.price) AS total_amount_spent
 FROM dannys_diner.menu as menu
 INNER JOIN dannys_diner.sales
@@ -7,13 +7,13 @@ GROUP BY sales.customer_id
 ORDER BY sales.customer_id;
 
 
--- Question 2
+-- QUESTION 2
 SELECT sales.customer_id, COUNT(DISTINCT sales.order_date) AS visited_days
 FROM dannys_diner.sales
 GROUP BY sales.customer_id
 ORDER BY customer_id;
 
--- Question 3
+-- QUESTION 3
 SELECT sales.customer_id, sales.order_date, menu.product_name
 FROM dannys_diner.menu as menu
 INNER JOIN dannys_diner.sales as sales
@@ -25,7 +25,7 @@ WHERE sales.order_date = (
 );
 
 
--- Question 4
+-- QUESTION 4
 SELECT menu.product_name, COUNT(sales.product_id) as times_purchased
 FROM dannys_diner.menu as menu
 INNER JOIN dannys_diner.sales as sales
@@ -34,7 +34,7 @@ GROUP BY menu.product_name
 LIMIT 1;
 
 
--- Question 5
+-- QUESTION 5
 WITH
 	customer_order_counts
 AS (
@@ -55,7 +55,7 @@ WHERE oc.order_count = (
 ORDER BY oc.customer_id;
 
 
--- Question 6
+-- QUESTION 6
 WITH	
 	member_sales
 AS (
@@ -73,7 +73,7 @@ WHERE rank = 1
 ORDER BY member_sales.customer_id;
 
 
--- Question 7
+-- QUESTION 7
 WITH	
 	member_sales
 AS (
@@ -91,7 +91,7 @@ WHERE rank = 1
 ORDER BY member_sales.customer_id;
 
 
--- Question 8
+-- QUESTION 8
 SELECT sales.customer_id, COUNT(sales.product_id) as total_items, SUM(menu.price) as total_amount_spent
 FROM dannys_diner.sales as sales
 JOIN dannys_diner.menu as menu
@@ -103,7 +103,7 @@ GROUP BY sales.customer_id
 ORDER BY sales.customer_id;
 
 
--- Question 9
+-- QUESTION 9
 WITH points_earned AS(
   SELECT *,
   CASE 
@@ -120,7 +120,7 @@ GROUP BY sales.customer_id
 ORDER BY sales.customer_id;
 
 
--- Question 10
+-- QUESTION 10
 WITH members_in_first_week
 AS (
   SELECT sales.customer_id, sales.order_date, members.join_date, sales.product_id, menu.product_name, menu.price, 
@@ -152,7 +152,7 @@ ORDER BY member_points.customer_id;
 
 
 -- Bonus questions
--- Question 11
+-- QUESTION 11
 SELECT sales.customer_id, sales.order_date, menu.product_name, menu.price,
 CASE
 	WHEN members.join_date > sales.order_date then 'N'
@@ -166,7 +166,7 @@ LEFT JOIN dannys_diner.members as members
 ON sales.customer_id = members.customer_id;
 
 
--- Question 12
+-- QUESTION 12
 WITH customer_order_summary
 AS (
 	SELECT sales.customer_id, sales.order_date, menu.product_name, menu.price,
