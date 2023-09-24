@@ -1,13 +1,13 @@
 # **SQL Challenge Week 1: Danny's Diner 🍜**
 
 ## Welcome to SQL Challenge Week 1: Danny's Diner! 
-I'm excited to introduce the SQL Challenged brought to you by [Data with Danny] (https://www.datawithdanny.com/), and I kicked off this challenge with study case #1: [Danny's Diner] (https://8weeksqlchallenge.com/case-study-1/).
+- I'm excited to introduce the SQL Challenged brought to you by [Data with Danny] (https://www.datawithdanny.com/), and I kicked off this challenge with study case #1: [Danny's Diner] (https://8weeksqlchallenge.com/case-study-1/).
 
 ## Challenge Overview
-Danny's Diner is a fictional data analysis challenge that involves working with a dataset from a restaurant named "Danny's Diner." The challenge typically provides participants with a database containing various tables, such as customer data, menu items, reservations, and transaction history. 
+- Danny's Diner is a fictional data analysis challenge that involves working with a dataset from a restaurant named "Danny's Diner." The challenge typically provides participants with a database containing various tables, such as customer data, menu items, reservations, and transaction history. 
 
 ## Problem Statement
-My task in this challenge is to dive in and uncover some seriously delectable insights. There are three main questions to tackle:
+- My task in this challenge is to dive in and uncover some seriously delectable insights. There are three main questions to tackle:
 
 **1. Popular Dishes**: Determining which menu items are the most frequently ordered by customers.
 
@@ -146,7 +146,7 @@ My task in this challenge is to dive in and uncover some seriously delectable in
 | C           | ramen        |  12   | N           |
 
 **12. Rank all the things**
-Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
+- Danny also requires further information about the ranking of customer products, but he purposely does not need the ranking for non-member purchases so he expects null ranking values for the records when customers are not yet part of the loyalty program.
 
 | customer_id | product_name | price | members_info| ranking|
 | ----------- | -------------|-------| ------------| -------|
