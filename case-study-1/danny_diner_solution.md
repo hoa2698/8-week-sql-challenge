@@ -1,7 +1,7 @@
 # **SQL Challenge Week 1: Danny's Diner 🍜**
 
 ## Welcome to SQL Challenge Week 1: Danny's Diner! 
-- I'm excited to introduce the SQL Challenged brought to you by [Data with Danny] (https://www.datawithdanny.com/), and I kicked off this challenge with study case #1: [Danny's Diner] (https://8weeksqlchallenge.com/case-study-1/).
+- I'm excited to introduce the SQL Challenged brought to you by [Data with Danny](https://www.datawithdanny.com/), and I kicked off this challenge with study case #1: [Danny's Diner](https://8weeksqlchallenge.com/case-study-1/).
 
 ## Challenge Overview
 - Danny's Diner is a fictional data analysis challenge that involves working with a dataset from a restaurant named "Danny's Diner." The challenge typically provides participants with a database containing various tables, such as customer data, menu items, reservations, and transaction history. 
