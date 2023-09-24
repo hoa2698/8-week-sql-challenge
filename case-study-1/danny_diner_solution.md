@@ -18,6 +18,7 @@
 ## Case Study Questions
 
 [View the complete code](https://github.com/hoa2698/8-week-sql-challenge/blob/main/case-study-1/danny_diner.sql)
+
 **1. What is the total amount each customer spent at the restaurant?**
 
 | customer_id | total_spent |
