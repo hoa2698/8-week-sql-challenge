@@ -9,9 +9,9 @@
 ## Problem Statement
 - My task in this challenge is to dive in and uncover some seriously delectable insights. There are three main questions to tackle:
 
-- 1. **Popular Dishes**: Determining which menu items are the most frequently ordered by customers.
-- 2. **Peak Dining Hours**: Exploring when the restaurant experiences peak hours of customer activity, helping to optimize staffing and service.
-- 3. **Reservation Patterns**: Investigating how far in advance customers typically make reservations, which can inform reservation management.
+**1. Popular Dishes**: Determining which menu items are the most frequently ordered by customers.
+**2. Peak Dining Hours**: Exploring when the restaurant experiences peak hours of customer activity, helping to optimize staffing and service.
+**3. Reservation Patterns**: Investigating how far in advance customers typically make reservations, which can inform reservation management.
 
 ## Case Study Questions
 **1. What is the total amount each customer spent at the restaurant?**
