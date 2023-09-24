@@ -16,6 +16,8 @@
 **3. Reservation Patterns**: Investigating how far in advance customers typically make reservations, which can inform reservation management.
 
 ## Case Study Questions
+
+[View the complete code](
 **1. What is the total amount each customer spent at the restaurant?**
 
 | customer_id | total_spent |
