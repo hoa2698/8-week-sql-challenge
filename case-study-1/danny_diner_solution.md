@@ -15,6 +15,7 @@
 
 ## Case Study Questions
 **1. What is the total amount each customer spent at the restaurant?**
+
 | customer_id | total_spent |
 | ----------- | ----------- |
 | A           | 76          |
@@ -26,6 +27,7 @@
 - Customer C spent 36$ at the restaurant.
 
 **2. How many days has each customer visited the restaurant?**
+
 | customer_id | days_visited |
 | ----------- | ------------ |
 | A           | 4            |
@@ -37,6 +39,7 @@
 - Customer C has visited the restaurant for 2 days.
 
 **3. What was the first item from the menu purchased by each customer?**
+
 | customer_id | product_name |
 |-------------|--------------|
 | A           | sushi        |
@@ -48,6 +51,7 @@
 - Ramen was the first item purchased by customer C.
   
 **4. What is the most purchased item on the menu and how many times was it purchased by all customers?**
+
 | product_name | time_purchased |
 |--------------|----------------|
 | ramen        | 8              |
@@ -55,6 +59,7 @@
 - Ramen is the most purchased item on the menu, and it was purchased 8 times by all customers.
 
 **5. Which item was the most popular for each customer?**
+
 | customer_id | product_name | count |
 | ----------- | -------------|-------|
 | A           | ramen        |  3    |
@@ -66,6 +71,7 @@
 - Ramen was enjoyed the most by customers A and C, while customer B enjoyed every food on the menu.
 
 **6. Which item was purchased first by the customer after they became a member?**
+
 | customer_id | product_name  | 
 | ----------- | --------------|
 | A           |  curry        | 
@@ -75,6 +81,7 @@
 - Customer B purchased sushi first after they became a member.
 
 **7. Which item was purchased just before the customer became a member?**
+
 | customer_id | product_name  |
 | ----------- | --------------|
 | A           |  sushi        | 
@@ -85,6 +92,7 @@
 - Customer B purchased curry before the customer became a member.
 
 **8. What is the total items and amount spent for each member before they became a member?**
+
 | customer_id | total_items | total_amount_spent |
 |-------------|-------------|--------------------|
 | A           | 2           | 25                 |
@@ -94,6 +102,7 @@
 - Customer B spent 40$ in total on 3 items before they became a member.
 
 **9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?**
+
 | customer_id | total_points |
 |-------------|--------------|
 | A           | 860          |
@@ -105,6 +114,7 @@
 - Customer C would have 360 points.
   
 **10. In the first week after a customer joins the program (including their join date) they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?**
+
 | customer_id | total_points |
 |-------------|--------------|
 | A           | 1370         |
@@ -114,6 +124,7 @@
 
 ## Bonus questions
 **11. Join all the things**
+
 | customer_id | product_name | price | members_info|
 | ----------- | -------------|-------| ------------|
 | A           | curry        |  15   | Y           |
